@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import { Container, Header, Title, Content } from "native-base"
+import { BackHandler, FlatList, StyleSheet } from 'react-native';
+import { Container, Header, Title, Content, Body, Right, Button, Text } from "native-base"
 //Custom Component
 import AddTodo from "./Components/AddTodo"
 import TodoList from "./Components/TodoList"
@@ -15,6 +15,7 @@ const App = () => {
         ...prevTodos,
       ]
     })
+    setText("")
   }
 
   const deleteTodo = (key) => {
@@ -38,7 +39,14 @@ const App = () => {
   return (
     <Container>
       <Header style={styles.header}>
-        <Title style={styles.headTitle}>Todo App</Title>
+        <Body>
+          <Title style={styles.headTitle}>Todo App</Title>
+        </Body>
+        <Right>
+          <Button danger style={styles.exitButton}
+            onPress={() => BackHandler.exitApp()}
+          ><Text>Exit</Text></Button>
+        </Right>
       </Header>
       <Content>
         <AddTodo submitHandler={submitHandler} />
@@ -54,10 +62,12 @@ const App = () => {
 };
 const styles = StyleSheet.create({
   headTitle: {
-    marginTop: 10,
     fontSize: 24,
     fontFamily: 'Rubik',
     fontWeight: 'bold',
+  },
+  exitButton: {
+    borderRadius: 8
   }
 })
 export default App;

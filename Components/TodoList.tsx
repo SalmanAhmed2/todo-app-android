@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from "react-native";
-import { Button, Text, Input, Icon } from "native-base"
+import { Button, Text, Input } from "native-base"
 
 export default function TodoList({ deleteTodo, item, editTask, editTodo, handleUpdate, isEdit }) {
     const [text, setText] = useState(item.task)
@@ -20,7 +20,7 @@ export default function TodoList({ deleteTodo, item, editTask, editTodo, handleU
                     <Button onPress={() => handleUpdate({ task: text, key: item.key })} style={styles.updateBtn}><Text>Update</Text></Button> :
                     <Button onPress={() => editTodo(item)} style={styles.editBtn}><Text>Edit</Text></Button>
             }
-            <Button onPress={() => deleteTodo(item.key)} style={styles.deleteBtn}>
+            <Button onPress={() => deleteTodo(item.key)} style={styles.deleteBtn} danger >
                 <Text style={{ fontWeight: "bold" }}>X</Text>
             </Button>
         </View>
@@ -36,26 +36,27 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        flex: 5,
+        flex: 4,
         fontSize: 20,
         fontWeight: "bold"
     },
     deleteBtn: {
-        backgroundColor: "red",
+        flex: 0.8,
         borderRadius: 8
     },
     editBtn: {
+        flex: 1,
         borderRadius: 8,
         marginHorizontal: 5,
     },
     updateBtn: {
+        flex: 1.5,
         backgroundColor: "green",
         borderRadius: 8,
         marginHorizontal: 5,
-        flex: 3,
     },
     input: {
-        flex: 5,
+        flex: 3.5,
         borderWidth: 1,
         borderRadius: 8
     }
