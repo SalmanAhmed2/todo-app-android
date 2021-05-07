@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from "react-native";
-import { Button, Input, Text } from "native-base"
+import { Button, Input, Text, Icon } from "native-base"
 export default function AddTodo({ submitHandler }) {
     const [text, setText] = useState(null);
     const changeHandler = (val) => {
         setText(val)
     }
     return (
-        <View style={{padding:10}}>
+        <View style={{ padding: 10 }}>
             <Input
                 placeholder="Enter Values"
                 onChangeText={changeHandler}
+                value={text}
+                style={styles.input}
             />
             <Button full
                 style={styles.addBtn}
@@ -23,16 +25,17 @@ export default function AddTodo({ submitHandler }) {
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
-        borderRadius: 8
+        borderRadius: 8,
+        marginHorizontal: 10,
     },
-    addBtn:{
+    addBtn: {
         margin: 10,
-        borderRadius:8,
-        backgroundColor:"darkblue",
+        borderRadius: 8,
+        backgroundColor: "darkblue",
     },
-    btnText:{
-        fontSize:17,
-        fontFamily:"Rubik"
+    btnText: {
+        fontSize: 17,
+        fontFamily: "Rubik"
     }
 
 })

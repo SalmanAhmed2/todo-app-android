@@ -17,27 +17,45 @@ export default function TodoList({ deleteTodo, item, editTask, editTodo, handleU
             }
             {
                 (editTask.key == item.key && isEdit) ?
-                    <Button onPress={() => handleUpdate({ task: text, key: item.key })} ><Text>Update</Text></Button> :
-                    <Button onPress={() => editTodo(item)} ><Text>Edit</Text></Button>
+                    <Button onPress={() => handleUpdate({ task: text, key: item.key })} style={styles.updateBtn}><Text>Update</Text></Button> :
+                    <Button onPress={() => editTodo(item)} style={styles.editBtn}><Text>Edit</Text></Button>
             }
-            <Button onPress={() => deleteTodo(item.key)}><Icon name="trash" danger /><Text>X</Text></Button>
+            <Button onPress={() => deleteTodo(item.key)} style={styles.deleteBtn}>
+                <Text style={{ fontWeight: "bold" }}>X</Text>
+            </Button>
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 20,
+        marginVertical: 10,
         padding: 10,
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
+
     },
     text: {
         flex: 5,
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: "bold"
     },
+    deleteBtn: {
+        backgroundColor: "red",
+        borderRadius: 8
+    },
+    editBtn: {
+        borderRadius: 8,
+        marginHorizontal: 5,
+    },
+    updateBtn: {
+        backgroundColor: "green",
+        borderRadius: 8,
+        marginHorizontal: 5,
+        flex: 3,
+    },
     input: {
-        flex: 1,
+        flex: 5,
         borderWidth: 1,
         borderRadius: 8
     }

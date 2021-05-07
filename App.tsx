@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { Container, Header, Title, Content } from "native-base"
 //Custom Component
 import AddTodo from "./Components/AddTodo"
@@ -15,7 +15,6 @@ const App = () => {
         ...prevTodos,
       ]
     })
-    setText("")
   }
 
   const deleteTodo = (key) => {
@@ -38,10 +37,10 @@ const App = () => {
   }
   return (
     <Container>
-      <Header>
-        <Title>Todo App</Title>
+      <Header style={styles.header}>
+        <Title style={styles.headTitle}>Todo App</Title>
       </Header>
-      <Content >
+      <Content>
         <AddTodo submitHandler={submitHandler} />
         <FlatList
           data={todoItems}
@@ -53,5 +52,12 @@ const App = () => {
     </Container>
   );
 };
-
+const styles = StyleSheet.create({
+  headTitle: {
+    marginTop: 10,
+    fontSize: 24,
+    fontFamily: 'Rubik',
+    fontWeight: 'bold',
+  }
+})
 export default App;
