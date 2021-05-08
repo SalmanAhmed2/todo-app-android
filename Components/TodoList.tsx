@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { View, StyleSheet } from "react-native";
+import React, { useState,useEffect } from 'react'
+import { View, StyleSheet,AsyncStorage } from "react-native";
 import { Button, Text, Input } from "native-base"
 
 export default function TodoList({ deleteTodo, item, editTask, editTodo, handleUpdate, isEdit }) {
@@ -7,6 +7,7 @@ export default function TodoList({ deleteTodo, item, editTask, editTodo, handleU
     const handleChange = (val) => {
         setText(val)
     }
+
     return (
         <View style={styles.container}>
             {(editTask.key == item.key && isEdit) ?
@@ -45,12 +46,12 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     editBtn: {
-        flex: 1,
+        flex: 1.2,
         borderRadius: 8,
         marginHorizontal: 5,
     },
     updateBtn: {
-        flex: 1.5,
+        flex: 1.8,
         backgroundColor: "green",
         borderRadius: 8,
         marginHorizontal: 5,

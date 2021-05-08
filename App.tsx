@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { BackHandler, FlatList, StyleSheet } from 'react-native';
-import { Container, Header, Title, Content, Body, Right, Button, Text } from "native-base"
+import React, { useState, useEffect } from 'react';
+import { AsyncStorage, BackHandler, FlatList, StyleSheet } from 'react-native';
+import { Container, Header, Title, Content, Body, Right, Button, Text, Input } from "native-base"
 //Custom Component
 import AddTodo from "./Components/AddTodo"
 import TodoList from "./Components/TodoList"
@@ -11,12 +11,35 @@ const App = () => {
   const submitHandler = (text, setText) => {
     setTodoItems((prevTodos) => {
       return [
-        { task: text, key: Math.floor(Math.random() * 100).toString() },
+        {
+          task: text,
+          key: Math.floor(Math.random() * 100).toString()
+        },
         ...prevTodos,
       ]
     })
-    setText("")
+    setText("");
   }
+  useEffect(async () => {
+    try {
+      await AsyncStorage.setItem(
+        'Task', JSON.stringify(todoItems));
+    } catch (error) {
+      // Error saving data
+    }
+  }, [setTodoItems])
+
+  useEffect(async () => {
+    try {
+      const value = await AsyncStorage.getItem('Task');
+      if (value !== null) {
+        // console.log(value, "values")
+        // setTodoItems(JSON.stringify(value))
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  }, [setTodoItems])
 
   const deleteTodo = (key) => {
     setTodoItems((prevTodos) => {
@@ -36,6 +59,8 @@ const App = () => {
     })
     setEdit(false)
   }
+
+
   return (
     <Container>
       <Header style={styles.header}>
@@ -62,7 +87,7 @@ const App = () => {
 };
 const styles = StyleSheet.create({
   headTitle: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'Rubik',
     fontWeight: 'bold',
   },

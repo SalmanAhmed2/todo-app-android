@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from "react-native";
-import { Button, Input, Text, Icon } from "native-base"
+import { Button, Input, Text } from "native-base"
 export default function AddTodo({ submitHandler }) {
     const [text, setText] = useState(null);
     const changeHandler = (val) => {
@@ -37,5 +37,4 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontFamily: "Rubik"
     }
-
 })
